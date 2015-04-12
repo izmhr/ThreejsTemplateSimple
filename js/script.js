@@ -15,6 +15,7 @@ function init() {
 
   renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
+  checkVersion();
   document.body.appendChild(renderer.domElement);
 
   // lights
@@ -29,7 +30,9 @@ function init() {
   var cube = new THREE.Mesh(geometry, material);
   scene.add(cube);
 
-  camera.position.z = 4;
+  // camera.position = new THREE.Vector3(0, 0, 5.0);
+  camera.position.set(0, 3, 5);
+  camera.lookAt(new THREE.Vector3(0, 0, 0));
 
   // render
   var render = function () {
@@ -43,6 +46,12 @@ function init() {
     requestAnimationFrame(render);
   };
   render();
+}
+
+function checkVersion() {
+  var _gl = renderer.context;
+  console.log( _gl.getParameter(_gl.VERSION) );
+  console.log( _gl.getParameter(_gl.SHADING_LANGUAGE_VERSION) );
 }
 
 // start on load.
