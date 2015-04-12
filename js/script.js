@@ -15,6 +15,7 @@ function init() {
 
   renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
+  checkVersion();
   document.body.appendChild(renderer.domElement);
 
   // lights
@@ -43,6 +44,12 @@ function init() {
     requestAnimationFrame(render);
   };
   render();
+}
+
+function checkVersion() {
+  var _gl = renderer.context;
+  console.log( _gl.getParameter(_gl.VERSION) );
+  console.log( _gl.getParameter(_gl.SHADING_LANGUAGE_VERSION) );
 }
 
 // start on load.
